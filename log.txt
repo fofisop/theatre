@@ -1,0 +1,30 @@
+2026-05-03 20:45:30 UTC
+Linux-6.6.99-09128-g14e87a8a9b71-x86_64-with-glibc2.36
+Ren'Py 8.5.2.26010301
+
+Early init took 81 ms
+Loading error handling took 24 ms
+Loading script took 139 ms
+Loading save slot metadata took 4 ms
+Loading persistent took 0 ms
+
+File "index.rpy", line 49: expected statement.
+    "Get up":
+            ^
+
+File "index.rpy", line 53: expected statement.
+    "Ignore it":
+               ^
+DPI scale factor: 1.000000
+Interface start took 269 ms
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1600, 1000)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'Mesa/X.org'
+Renderer: 'llvmpipe (LLVM 15.0.6, 256 bits)'
+Version: '4.5 (Compatibility Profile) Mesa 22.3.6'
+Display Info: <Info({'bitsize': 32, 'bytesize': 4, 'masks': (16711680, 65280, 255, 0), 'shifts': (16, 8, 0, 0), 'losses': (0, 0, 0, 8), 'current_w': 1600, 'current_h': 1000, 'refresh_rate': 60, 'hw': False, 'wm': True, 'video_mem': 268435456, 'blit_hw': False, 'blit_hw_CC': False, 'blit_hw_A': False, 'blit_sw': False, 'blit_sw_CC': False, 'blit_sw_A': False})>
+Screen sizes: virtual=(800, 600) physical=(800, 600) drawable=(800, 600)
+Maximum texture size: 4096x4096
