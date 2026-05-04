@@ -3,7 +3,6 @@ define m = Character("You")
 default read_notes = False
 default read_monologue = False
 default gave_resume = False
-
 default stress = 0
 default skill = 0
 default reputation = 0
@@ -159,4 +158,128 @@ label audition:
         "You got the role youve always wanted!"
         "But can you face the pressure?"
 
-       
+    default day = 1
+
+label rehearsal_loop:
+
+if day > max_days:
+        jump final_outcome
+scene rehearsal
+"Day [day] of rehearsals."
+if role == "lead":
+        call lead_rehearsal_day
+    elif role == "background":
+        call background_rehearsal_day
+    else:
+        call crew_rehearsal_day
+    $ day += 1
+    jump rehearsal_loop
+
+
+
+
+
+
+
+
+
+    label lead_rehearsal_day:
+    if day == 1:
+        "You step into rehearsal. The director eyes you carefully."
+        "She hands you the script."
+        "You are asked to do a cold read."
+        menu:
+            "How do you respond?":
+                "Give it everything":
+                    "You throw yourself into the role, despite the fact that it's just a cold read."
+                    $ skill += 2
+                    $ stress += 1
+                "Play it safe":
+                    "You keep it controlled."
+                    $ skill += 1
+
+                    "Ask for direction":
+                    "You pause. 'Any notes before I start?'"
+                    $ reputation += 2
+
+                    elif day == 2:
+                        "You are enjoying yourself..."
+                        "But starting to feel the pressure."
+                        "You mess up a line mid scene."
+                        menu:
+                            "What do you do?":
+                                "Keep going":
+                    "You recover quickly, and continue the scene."
+                    $ skill += 2
+                    $ reputation += 1
+                "Apologize":
+                    "You stop and reset."
+                    $ stress += 1
+
+                    "Laugh it off":
+                    "Some people smile. The director doesn't."
+
+                    $ reputation -= 1
+
+
+    elif day == 3:
+
+        "The director starts pushing you harder."
+        "They tell you that you aren't doing enough."
+        "You feel like you just started memorising the script, and now they exepct you to know it by heart?"
+        menu:
+            "How do you react?":
+
+                "Push yourself harder":
+                    $ skill += 2
+                    $ stress += 2
+
+                "Internalize it":
+                    $ passion -= 2
+                    $ stress += 1
+
+                    "Push back slightly":
+                    $ reputation += 1
+                    $ stress += 1
+
+
+                    elif day == 4:
+                        "You're doing well, but the exastion is overwhelming."
+                        "The fact that everyone can tell stresses you out even more."
+                        menu:
+                            "How do you handle it?":
+                                "Keep commiting. It's stressful, but worth it."
+                                $ stress += 1
+                                $ skill += 1
+
+                                "Take a break":
+                                    $ stress -= 2
+                                    "Talk to someone":
+                                        $ passion += 2
+                                        $ reputation += 1
+
+                                        elif day == 5:
+                                            "Dress rehearsal."
+                                            "Everything has to be perfect."
+
+                                            menu:
+                                                "What's your approach?"
+                                                "Give everything you have":
+                                                    $ skill += 3
+                                                    $ stress += 2
+
+                                                    "Stay calm and focused":
+                                                    $ stress -= 1
+                                                    $ skill += 1
+                                                    
+                
+
+                  
+
+
+
+
+                   
+                        
+
+    
