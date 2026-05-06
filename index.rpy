@@ -250,8 +250,8 @@ if role == "lead":
                             "How do you handle it?":
                                 "Keep commiting. It's stressful, but worth it."
                                 $ stress += 1
+                                
                                 $ skill += 1
-
                                 "Take a break":
                                     $ stress -= 2
                                     "Talk to someone":
@@ -271,8 +271,71 @@ if role == "lead":
                                                     "Stay calm and focused":
                                                     $ stress -= 1
                                                     $ skill += 1
-                                                    
-                
+                                                        return
+label background_rehearsal_day:
+
+    if day == 1:
+        "You're barely noticed."
+
+        menu:
+            "What do you do?":
+
+                "Observe and learn":
+                    $ skill += 2
+
+                "Try to stand out":
+                    $ reputation += 2
+                    $ stress += 1
+
+                elif day == 2:
+                    "You finally get direction."
+                    "It feels good to be able to do something."
+                    menu:
+            "Your response?":
+
+                "Take it seriously":
+                    $ skill += 2
+
+                "Half-listen":
+                    $ passion -= 1
+                    elif day == 3:
+                        "You feel ignored again."
+                        "You have to spend an hour at rehearsal just sitting backstage."
+                        menu:
+                            "How do you cope?":
+
+                "Stay focused":
+                    $ skill += 1
+
+                "Get discouraged":
+                    $ passion -= 2
+
+
+                    elif day == 4:
+                        "Some of the other actors are being kind to you."
+                        "They hype you up even when you get a small spot on stage!"
+                        menu:
+                            "What do you do when you get to be in a small scene?"
+                            "Make it count":
+                    $ reputation += 3
+
+                "Play it safe":
+                    $ skill += 1
+
+                    elif day == 5:
+                        "Final day, it's dress rehearsal."
+                        "You can't believe how quickly time flew by, but here you are."
+                        menu:
+                            "What's your mindset?"
+                            "I belong here":
+                    $ passion += 2
+
+                "I don't matter here":
+                    $ passion -= 2
+
+    return
+
+
 
                   
 

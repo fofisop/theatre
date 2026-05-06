@@ -1,1 +1,1 @@
-My first visual/novel game thing!
+My first visual/novel game thing! I am a huge fan of theatre, and I have loved being on the stage for a long time. I stumbled upon renpy through looking at others  hack club projects, and I decided on creating a visual novel based on my own experiences to that everyone can have a peep at the theatre world.
