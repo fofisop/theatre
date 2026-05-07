@@ -8,6 +8,18 @@ default skill = 0
 default reputation = 0
 default passion = 5
 default role = "none"
+
+label show_day:
+
+    if role == "lead":
+        jump show_day_lead
+
+    elif role == "background":
+        jump show_day_background
+
+    else:
+        jump show_day_crew
+
 label start:
     scene room
 
@@ -163,7 +175,7 @@ label audition:
 label rehearsal_loop:
 
 if day > max_days:
-        jump final_outcome
+        jump show_day
 scene rehearsal
 "Day [day] of rehearsals."
 if role == "lead":
@@ -250,7 +262,7 @@ if role == "lead":
                             "How do you handle it?":
                                 "Keep commiting. It's stressful, but worth it."
                                 $ stress += 1
-                                
+
                                 $ skill += 1
                                 "Take a break":
                                     $ stress -= 2
@@ -337,12 +349,200 @@ label background_rehearsal_day:
 
 
 
-                  
+label crew_rehearsal_day:
+
+    if day == 1:
+        "You're learning how everything works backstage."
+        "You're upset that you didn't get your dream role, but at least you get to help out with the play!"
+        menu:
+            "What do you focus on?":
+                "Learning how things work":
+                    $ skill += 2
+                    "Helping people out even if you don't really know how":
+                        $ reputation += 2
+
+
+                        elif day == 2:
+        "Something goes wrong."
+
+        menu:
+            "What is your reaction?":
+
+                "Fix it quickly":
+                    $ skill += 2
+                    $ stress += 1
+
+                "Call for help":
+                    $ reputation += 1
 
 
 
 
-                   
-                        
+    elif day == 3:
+        "You feel disconnected from the stage."
 
-    
+        menu:
+            "What do you do?":
+
+                "Watch rehearsals":
+                    $ passion += 2
+
+                "Stay busy":
+                    $ skill += 1
+
+                    elif day == 4:
+                        "You are trusted with being the head of stage crew."
+                        menu:
+            "How do you handle it?":
+
+                "Take it seriously":
+                    $ reputation += 2
+
+                "Don't put too much of an effort into it":
+                    $ stress += 1
+
+
+                    elif day == 5:
+                        "Final tech rehearsal before the real deal."
+                        menu: 
+                            "What's your mindset?":
+
+
+                "This matters":
+                    $ passion += 2
+
+                "I'm just background":
+                    $ passion -= 2 
+                    return
+
+
+label show_day_lead:
+    scene room
+    "It's opening night."
+    "You wake up before the alarm."
+    "You are  already feeling nervous."
+    menu:
+        "How do you start the day?":
+
+            "Practice immediately":
+                $ skill += 1
+                $ stress += 1
+
+            "Try to relax":
+                $ stress -= 1
+
+            "Avoid thinking about the show":
+                $ passion -= 1
+
+                scene theatre_lobby
+                "People keep wishing you luck."
+                "They don't calm your nerves."
+                scene dressing_room:
+                    "The room feels loud, overwhelming."
+                    "You try to joke and laugh with your fellow actors, but it doesn't seem to break the tension."
+                    menu:
+                        "What do you do?":
+                            "Chat with the others in the room":
+                                $ reputation += 2
+
+                                "Focus quietly":
+                                    $ skill += 1
+
+
+                                    "Panic internally":
+                                        $ stress +=2
+
+                                        scene stage
+                                        "The curtian rises."
+                                        "Thousands of eyes stare at you."
+                                        "Your first line approaches."
+                                        menu:
+                                            "How do you deliver it?":
+                                                "With confidence":
+                                                    skill += 2
+
+                                                    "Carefully":
+                                                        $ stress -= 1
+
+                                                        "In a rushed manner":
+                                                            $ reputation -= 1
+
+
+                                                            "The emotional climax of the play arrives."
+                                                            menu:
+    "What drives your performance?":
+
+        "Passion":
+            $ passion += 2
+
+        "Perfection":
+            $ stress += 2
+
+        "Fear":
+            $ stress += 3
+            scene back_after
+            "The show is over."
+    "The applause still echoes in your head."
+    "People laugh, cry, hug."
+    "And you finally have a moment to think."
+
+label show_day_background:
+    scene room:
+        "Opening night."
+        "Your name isn't on the posters."
+        "Most people probably won't even rememer your role."
+        "But at least you're in it."
+        menu:
+            "How do you feel?":
+                "Proud to be here":
+                    passion += 2
+                    "Nervous":
+                        stress += 2
+                        "Useless":
+                            passion -= 1
+
+
+
+                            scene theatre_lobby
+                            "The lobby is packed."
+                            "People talk excitedly about the lead actor."
+                            "No one notices you walk in."
+
+menu:
+    "What do you do?":
+        "Keep your head down":
+            $ stress -= 1
+        "Talk to other ensemble members":
+            $ reputation += 2
+        "Watch the lead longingly from afar":
+            $ passion -= 1
+            scene dressing_room
+            "The dressing room is pure chaos."
+            "You overhear someone say the lead is amazing."
+            menu:
+                "What's your reaction?":
+                    "Use it as motivation":
+                        $ skill += 2
+                        "Feel jealous":
+                        $ passion -= 2
+                        "Focus on your own role.":
+                        $ stress -= 1 
+                    $ skill += 1
+
+
+                    "It's time for you to go on stage."
+                    "Everyone applauded the lead, but will they applaud you?"
+                    menu:
+                        "What keeps you going?":
+                            "Your love for performing": 
+                                $ passion += 2
+
+        "Hope someone notices":
+            $ reputation += 2
+
+        "Pure obligation":
+            $ stress += 2
+
+
+
+
