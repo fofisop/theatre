@@ -406,11 +406,8 @@ label crew_rehearsal_day:
                         "Final tech rehearsal before the real deal."
                         menu: 
                             "What's your mindset?":
-
-
                 "This matters":
                     $ passion += 2
-
                 "I'm just background":
                     $ passion -= 2 
                     return
@@ -423,17 +420,13 @@ label show_day_lead:
     "You are  already feeling nervous."
     menu:
         "How do you start the day?":
-
             "Practice immediately":
                 $ skill += 1
                 $ stress += 1
-
             "Try to relax":
                 $ stress -= 1
-
             "Avoid thinking about the show":
                 $ passion -= 1
-
                 scene theatre_lobby
                 "People keep wishing you luck."
                 "They don't calm your nerves."
@@ -444,14 +437,10 @@ label show_day_lead:
                         "What do you do?":
                             "Chat with the others in the room":
                                 $ reputation += 2
-
                                 "Focus quietly":
                                     $ skill += 1
-
-
                                     "Panic internally":
                                         $ stress +=2
-
                                         scene stage
                                         "The curtian rises."
                                         "Thousands of eyes stare at you."
@@ -460,24 +449,18 @@ label show_day_lead:
                                             "How do you deliver it?":
                                                 "With confidence":
                                                     skill += 2
-
                                                     "Carefully":
                                                         $ stress -= 1
-
                                                         "In a rushed manner":
                                                             $ reputation -= 1
-
 
                                                             "The emotional climax of the play arrives."
                                                             menu:
     "What drives your performance?":
-
         "Passion":
             $ passion += 2
-
         "Perfection":
             $ stress += 2
-
         "Fear":
             $ stress += 3
             scene back_after
@@ -485,12 +468,24 @@ label show_day_lead:
     "The applause still echoes in your head."
     "People laugh, cry, hug."
     "And you finally have a moment to think."
+    jump final_outcome
+
+
+
+
+
+
+
+
+
+
+
 
 label show_day_background:
     scene room:
         "Opening night."
         "Your name isn't on the posters."
-        "Most people probably won't even rememer your role."
+        "Most people probably won't even remember your role."
         "But at least you're in it."
         menu:
             "How do you feel?":
@@ -500,14 +495,10 @@ label show_day_background:
                         stress += 2
                         "Useless":
                             passion -= 1
-
-
-
                             scene theatre_lobby
                             "The lobby is packed."
                             "People talk excitedly about the lead actor."
                             "No one notices you walk in."
-
 menu:
     "What do you do?":
         "Keep your head down":
@@ -528,21 +519,170 @@ menu:
                         "Focus on your own role.":
                         $ stress -= 1 
                     $ skill += 1
-
-
                     "It's time for you to go on stage."
                     "Everyone applauded the lead, but will they applaud you?"
                     menu:
                         "What keeps you going?":
                             "Your love for performing": 
                                 $ passion += 2
-
         "Hope someone notices":
             $ reputation += 2
-
         "Pure obligation":
             $ stress += 2
+"The scene changes."
+"For the first time, the spotlight briefly shines in your eyes, and it feels good."
+"You have one line in the spotlight."
+menu:
+    "How do you deliver it?":
+    "Confidently":
+            $ skill += 2
+        "Carefully":
+            $ stress -= 1
+        "Quietly":
+            $ reputation -= 1
+            scene lobby
+            "The performance ends."
+            "The lead gets surrounded by applause and flowers."
+            "You stand off to the side."
+            "Suddenly, someone from the audience stops you. They complement you, and tell you that you did well."
+            "It feels worth it now just because of that one person."
+            jump final_outcome
 
 
 
+label show_day_crew:
+    scene room
+    "It's opening night."
+    "You have to make sure the show runs smoothly."
+menu:
+        "How do you start the day?":
 
+            "Review the cue sheet":
+                $ skill += 2
+
+            "Try to stay calm":
+                $ stress -= 1
+
+            "Avoid thinking about mistakes":
+                $ passion -= 1
+
+
+                scene lobby
+                "The theatre is already moving."
+                "Props are being moved, light are being tested, and there are tons of things to do."
+                
+                "The stage manager tells you to help out."
+                menu:
+                    "How do you respond?":
+                        "Check lighting":
+                            $ skill += 2
+                            "Help the cast":
+                                $ reputation += 2
+                                "Double check everything":
+                                    $ stress += 1
+                                    $ skill += 1
+
+                                    scene tech booth
+                                "An important prop goes missing. The stage manager looks concerned."
+                                menu: 
+                                    "What do you do?":
+        "Search for it yourself":
+            $ skill += 2
+            $ stress += 1
+            "Ask others for help":
+                $ reputation += 2
+                "Freeze up":
+            $ stress += 2
+            $ passion -= 1
+            "The curtain rises."
+            "Your headset crackles."
+            "You try to do everything right on time, but there's a lot to be done."
+            "Cue after cue rolls by, and you try your best to focus."
+            menu:
+                "How do you handle the pressure?":
+                    "Stay focused":
+                        $ skill += 2
+                        "Trust your insincts":
+                            $ passion += 2
+                            "Panic quietly":
+                                $ stress += 2
+                                "Suddenly, an important spotlight goes out."
+                                "The stage manager is nowhere around."
+                                menu:
+                                    "What do you do?":
+                                        "Dig through wires, and try to see which one could've disconnected.":
+                                            $ skill += 3
+                                            "Choose to not trust yourself with this, and call for help.":
+                                                $ reputation += 1
+                                                "Freeze and hesitate":
+                                                    $ stress += 2
+                                                    "The show ends."
+                                                    "The audience applauds."
+                                                    "The actors take their bows."
+                                                    "You stay behind the curtain."
+                                                    "The stage manager approaches you."
+                                                    "They tell you that they couldn't have done it without you."
+
+                                                    jump final_outcome
+                                        
+
+
+label final_outcome:
+    if stress >= 8:
+        jump burnout_ending
+
+
+
+        if role == "lead":
+            if skill >= 8 and passion >= 4:
+            jump success_ending
+            elif reputation >= 8:
+    jump directors_fav
+            else: 
+                jump quit_theatre
+
+            elif role == "background":
+                if passion >= 6:
+                    elif skill >= 7 and reputation >= 6:
+    jump scene_stealer
+                    jump found_passion
+                    else:
+                        jump quit_theatre
+
+                        elif role == "crew":
+                            if skill >= 8 and reputation >= 6 and stress <= 5:
+            jump manager
+            elif skill >= 7 and reputation >= 5:
+            jump found_passion
+        else:
+            jump quit_theatre
+
+
+label success_ending:
+    "You made it. All of the rehearsals, all of the stress finally led somewhere. This is an actor's dream. You finally got your big break, and you will want to keep doing thsi for as long as you can."
+return
+
+
+label burnout_ending:
+    "The show is over. But you feel empty. You need to step away from thsi path for now. The pressure took more from you tahn expected."
+return
+
+label quit_theatre:
+"You stand on the empty stage after everyone has left. Somewhere along the way, theatre stopped feeling right. Maybe it's time for something new. You leave the theatre and sigh."
+return
+
+label found_passion:
+    "You smile quietly. Maybe you were never chasing the spotlight, and you were just finding a place to belong. Now you have, and it's your passion."
+    return
+
+label manager:
+    "The stage manager offers you to be co-manager. You pause. This idea feels right. Maybe this is what you are meant to be. You accept."
+    return
+
+
+label directors_fav:
+    "You weren't perfect. But you've got a good reputation. Sometimes reliability matters more than brilliance. You are the director's favorite."
+
+
+    label scene_stealer:
+        "It was only a small role, but people noticed. You realize small roles might matter more than you thought. Someone hands you a bouquet after you are done."
