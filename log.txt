@@ -1,22 +1,17 @@
-2026-05-03 20:45:30 UTC
+2026-05-13 23:56:44 UTC
 Linux-6.6.99-09128-g14e87a8a9b71-x86_64-with-glibc2.36
 Ren'Py 8.5.2.26010301
 
-Early init took 81 ms
-Loading error handling took 24 ms
-Loading script took 139 ms
-Loading save slot metadata took 4 ms
+Early init took 93 ms
+Loading error handling took 35 ms
+Loading script took 104 ms
+Loading save slot metadata took 6 ms
 Loading persistent took 0 ms
 
-File "index.rpy", line 49: expected statement.
-    "Get up":
-            ^
-
-File "index.rpy", line 53: expected statement.
-    "Ignore it":
-               ^
+File "index.rpy", line 177: Indentation mismatch.
+    elif role == "background":
 DPI scale factor: 1.000000
-Interface start took 269 ms
+Interface start took 364 ms
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1600, 1000)

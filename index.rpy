@@ -1,36 +1,28 @@
 define m = Character("You")
-
 default read_notes = False
 default read_monologue = False
 default gave_resume = False
 default stress = 0
 default skill = 0
 default reputation = 0
-default passion = 5
+default passion = 0
 default role = "none"
-
 label show_day:
-
     if role == "lead":
         jump show_day_lead
-
     elif role == "background":
         jump show_day_background
-
     else:
         jump show_day_crew
-
 label start:
     scene room
-
-    "Your room. Audition day is tommorow."
-
-menu:
+    "Your room. Audition day is tommorow." 
+    menu:
     "Do you check your audition notes?":
 
     "Yes": 
         $ read_notes = True
-    "Your review the notes carefully."
+        "You review the notes carefully."
 
     "No":
         "You decide to wing it."
@@ -40,7 +32,7 @@ menu:
 
     "Yes": 
         $ read_monologue = True
-    "You read and reahearse your monologue."
+        "You read and reahearse your monologue."
 
     "No":
         "You think you got it memorized just fine."
@@ -48,6 +40,8 @@ menu:
 "You fall asleep..."
 
 jump morning
+
+
 
 label morning:
     scene black
@@ -94,21 +88,15 @@ label audition:
 
     "You deliver your monologue perfectly."
     "The room is silent when you finish."
-
     jump after_audition
-
     label after_audition:
-
     menu:
         "Do you leave immediately?":
-
             "Yes":
                 "You walk out, unsure how it went."
                 jump results
-
             "No":
             "You linger."
-
                 if read_notes:
                     "You remember something from your notes..."
                     jump give_resume
@@ -116,30 +104,14 @@ label audition:
                     "You feel like you're forgetting something."
                     jump results
                     label give_resume:
-
     menu:
         "Give your resume to the staff?":
-
             "Yes":
                 $ gave_resume = True
                 "You hand over your resume confidently."
-
             "No":
                 "You hesitate and walk away."
-
     jump results
-
-
-
-
-
-
-
-
-
-
-
-
     label results:
     scene room
 
@@ -149,8 +121,6 @@ label audition:
     if gave_resume:
         "You got the lead role!!!"
         $ role = "lead"
-        
-
     else:
         menu:
             "You didn't stand out too much...":
@@ -180,9 +150,9 @@ scene rehearsal
 "Day [day] of rehearsals."
 if role == "lead":
         call lead_rehearsal_day
-    elif role == "background":
-        call background_rehearsal_day
-    else:
+elif role == "background": 
+    call background_rehearsal_day
+else:
         call crew_rehearsal_day
     $ day += 1
     jump rehearsal_loop
@@ -473,14 +443,6 @@ label show_day_lead:
 
 
 
-
-
-
-
-
-
-
-
 label show_day_background:
     scene room:
         "Opening night."
@@ -534,7 +496,7 @@ menu:
 "You have one line in the spotlight."
 menu:
     "How do you deliver it?":
-    "Confidently":
+        "Confidently":
             $ skill += 2
         "Carefully":
             $ stress -= 1
@@ -684,5 +646,5 @@ label directors_fav:
     "You weren't perfect. But you've got a good reputation. Sometimes reliability matters more than brilliance. You are the director's favorite."
 
 
-    label scene_stealer:
+label scene_stealer:
         "It was only a small role, but people noticed. You realize small roles might matter more than you thought. Someone hands you a bouquet after you are done."

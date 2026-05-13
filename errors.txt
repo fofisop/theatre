@@ -2,13 +2,8 @@
 errors listed below, and try again.
 
 
-File "index.rpy", line 49: expected statement.
-    "Get up":
-            ^
-
-File "index.rpy", line 53: expected statement.
-    "Ignore it":
-               ^
+File "index.rpy", line 177: Indentation mismatch.
+    elif role == "background":
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Sun May  3 16:45:30 2026
+Wed May 13 19:56:44 2026
