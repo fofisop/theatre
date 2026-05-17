@@ -2,8 +2,353 @@
 errors listed below, and try again.
 
 
-File "index.rpy", line 177: Indentation mismatch.
-    elif role == "background":
+File "index.rpy", line 24: expected statement.
+    "Yes":
+         ^
+
+File "index.rpy", line 27: expected statement.
+    "No":
+        ^
+
+File "index.rpy", line 32: expected statement.
+    "Yes":
+         ^
+
+File "index.rpy", line 35: expected statement.
+    "No":
+        ^
+
+File "index.rpy", line 47: expected statement.
+    "Get up":
+            ^
+
+File "index.rpy", line 50: expected statement.
+    "Ignore it":
+               ^
+
+File "index.rpy", line 87: expected statement.
+    "Yes":
+         ^
+
+File "index.rpy", line 90: expected statement.
+    "No":
+        ^
+
+File "index.rpy", line 101: expected statement.
+    "Yes":
+         ^
+
+File "index.rpy", line 104: expected statement.
+    "No":
+        ^
+
+File "index.rpy", line 121: expected statement.
+    "Accept background role":
+                            ^
+
+File "index.rpy", line 147: expected statement.
+    "Give it everything":
+                        ^
+
+File "index.rpy", line 151: expected statement.
+    "Play it safe":
+                  ^
+
+File "index.rpy", line 154: expected statement.
+    "Ask for direction":
+                       ^
+
+File "index.rpy", line 163: expected statement.
+    "Keep going":
+                ^
+
+File "index.rpy", line 167: expected statement.
+    "Apologize":
+               ^
+
+File "index.rpy", line 170: expected statement.
+    "Laugh it off":
+                  ^
+
+File "index.rpy", line 180: expected statement.
+    "Push yourself harder":
+                          ^
+
+File "index.rpy", line 184: expected statement.
+    "Internalize it":
+                    ^
+
+File "index.rpy", line 188: expected statement.
+    "Push back slightly":
+                        ^
+
+File "index.rpy", line 199: expected statement.
+    "Keep committing. It's stressful, but worth it.":
+                                                    ^
+
+File "index.rpy", line 203: expected statement.
+    "Take a break":
+                  ^
+
+File "index.rpy", line 206: expected statement.
+    "Talk to someone":
+                     ^
+
+File "index.rpy", line 217: expected statement.
+    "Give everything you have":
+                              ^
+
+File "index.rpy", line 221: expected statement.
+    "Stay calm and focused":
+                           ^
+
+File "index.rpy", line 234: expected statement.
+    "Observe and learn":
+                       ^
+
+File "index.rpy", line 236: expected statement.
+    "Try to stand out":
+                      ^
+
+File "index.rpy", line 247: expected statement.
+    "Take it seriously":
+                       ^
+
+File "index.rpy", line 249: expected statement.
+    "Half-listen":
+                 ^
+
+File "index.rpy", line 259: expected statement.
+    "Stay focused":
+                  ^
+
+File "index.rpy", line 261: expected statement.
+    "Get discouraged":
+                     ^
+
+File "index.rpy", line 271: expected statement.
+    "Make it count":
+                   ^
+
+File "index.rpy", line 273: expected statement.
+    "Play it safe":
+                  ^
+
+File "index.rpy", line 283: expected statement.
+    "I belong here":
+                   ^
+
+File "index.rpy", line 285: expected statement.
+    "I don't matter here":
+                         ^
+
+File "index.rpy", line 294: expected statement.
+    "Learning how things work":
+                              ^
+
+File "index.rpy", line 296: expected statement.
+    "Helping people out even if you don't really know how":
+                                                          ^
+
+File "index.rpy", line 302: expected statement.
+    "Fix it quickly":
+                    ^
+
+File "index.rpy", line 305: expected statement.
+    "Call for help":
+                   ^
+
+File "index.rpy", line 311: expected statement.
+    "Watch rehearsals":
+                      ^
+
+File "index.rpy", line 313: expected statement.
+    "Stay busy":
+               ^
+
+File "index.rpy", line 319: expected statement.
+    "Take it seriously":
+                       ^
+
+File "index.rpy", line 321: expected statement.
+    "Don't put too much of an effort into it":
+                                             ^
+
+File "index.rpy", line 327: expected statement.
+    "This matters":
+                  ^
+
+File "index.rpy", line 329: expected statement.
+    "I'm just background":
+                         ^
+
+File "index.rpy", line 341: expected statement.
+    "Practice immediately":
+                          ^
+
+File "index.rpy", line 344: expected statement.
+    "Try to relax":
+                  ^
+
+File "index.rpy", line 346: expected statement.
+    "Avoid thinking about the show":
+                                   ^
+
+File "index.rpy", line 356: expected statement.
+    "Chat with the others in the room":
+                                      ^
+
+File "index.rpy", line 358: expected statement.
+    "Focus quietly":
+                   ^
+
+File "index.rpy", line 360: expected statement.
+    "Panic internally":
+                      ^
+
+File "index.rpy", line 369: expected statement.
+    "With confidence":
+                     ^
+
+File "index.rpy", line 371: expected statement.
+    "Carefully":
+               ^
+
+File "index.rpy", line 373: expected statement.
+    "In a rushed manner":
+                        ^
+
+File "index.rpy", line 379: expected statement.
+    "Passion":
+             ^
+
+File "index.rpy", line 381: expected statement.
+    "Perfection":
+                ^
+
+File "index.rpy", line 383: expected statement.
+    "Fear":
+          ^
+
+File "index.rpy", line 401: expected statement.
+    "Proud to be here":
+                      ^
+
+File "index.rpy", line 403: expected statement.
+    "Nervous":
+             ^
+
+File "index.rpy", line 405: expected statement.
+    "Useless":
+             ^
+
+File "index.rpy", line 413: expected statement.
+    "Keep your head down":
+                         ^
+
+File "index.rpy", line 415: expected statement.
+    "Talk to other ensemble members":
+                                    ^
+
+File "index.rpy", line 417: expected statement.
+    "Watch the lead longingly from afar":
+                                        ^
+
+File "index.rpy", line 424: expected statement.
+    "Use it as motivation":
+                          ^
+
+File "index.rpy", line 426: expected statement.
+    "Feel jealous":
+                  ^
+
+File "index.rpy", line 428: expected statement.
+    "Focus on your own role.":
+                             ^
+
+File "index.rpy", line 435: expected statement.
+    "Your love for performing":
+                              ^
+
+File "index.rpy", line 437: expected statement.
+    "Hope someone notices":
+                          ^
+
+File "index.rpy", line 439: expected statement.
+    "Pure obligation":
+                     ^
+
+File "index.rpy", line 446: expected statement.
+    "Confidently":
+                 ^
+
+File "index.rpy", line 448: expected statement.
+    "Carefully":
+               ^
+
+File "index.rpy", line 450: expected statement.
+    "Quietly":
+             ^
+
+File "index.rpy", line 468: expected statement.
+    "Review the cue sheet":
+                          ^
+
+File "index.rpy", line 470: expected statement.
+    "Try to stay calm":
+                      ^
+
+File "index.rpy", line 472: expected statement.
+    "Avoid thinking about mistakes":
+                                   ^
+
+File "index.rpy", line 480: expected statement.
+    "Check lighting":
+                    ^
+
+File "index.rpy", line 482: expected statement.
+    "Help the cast":
+                   ^
+
+File "index.rpy", line 484: expected statement.
+    "Double check everything":
+                             ^
+
+File "index.rpy", line 491: expected statement.
+    "Search for it yourself":
+                            ^
+
+File "index.rpy", line 494: expected statement.
+    "Ask others for help":
+                         ^
+
+File "index.rpy", line 496: expected statement.
+    "Freeze up":
+               ^
+
+File "index.rpy", line 505: expected statement.
+    "Stay focused":
+                  ^
+
+File "index.rpy", line 507: expected statement.
+    "Trust your instincts":
+                          ^
+
+File "index.rpy", line 509: expected statement.
+    "Panic quietly":
+                   ^
+
+File "index.rpy", line 515: expected statement.
+    "Dig through wires, and try to see which one could've disconnected.":
+                                                                        ^
+
+File "index.rpy", line 517: expected statement.
+    "Choose to not trust yourself with this, and call for help.":
+                                                                ^
+
+File "index.rpy", line 519: expected statement.
+    "Freeze and hesitate":
+                         ^
 
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Wed May 13 19:56:44 2026
+Sun May 17 12:06:55 2026
