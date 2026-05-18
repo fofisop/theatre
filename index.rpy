@@ -117,13 +117,13 @@ label results:
         $ role = "lead"
         jump rehearsal_loop
     else:
-        menu:
-            "You didn't stand out too much...":
-                "Accept background role":
-                    $ role = "background"
-                "Join stage crew instead":
-                    $ role = "crew"
-        jump rehearsal_loop
+    menu:
+        "You didn't stand out too much...":
+            "Accept background role":
+                $ role = "background"
+            "Join stage crew instead":
+                $ role = "crew"
+    jump rehearsal_loop
 label rehearsal_loop:
     if day > max_days:
         jump show_day
@@ -316,8 +316,6 @@ label crew_rehearsal_day:
                 "I'm just background":
                     $ passion -= 2
     return
-
-
 label show_day_lead:
     scene room
     "It's opening night."
@@ -512,9 +510,6 @@ label show_day_crew:
     "The stage manager approaches you."
     "They tell you that they couldn't have done it without you."
     jump final_outcome
-                                        
-
-
 label final_outcome:
 
     if stress >= 10 and passion < 4:
