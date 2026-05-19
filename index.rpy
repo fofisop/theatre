@@ -9,6 +9,17 @@ default passion = 0
 default role = "none"
 default max_days = 5
 default day = 1
+image room = "room.png"
+image audition = "audition.png"
+image lobby = "lobby.png"
+image mon = "mon.png"
+image notes = "notes.png"
+image dressing_room = "dressing_room.png"
+image tech_booth = "tech_booth.png"
+image stage = "stage.png" 
+image womp = "womp.png"
+image win = "win.png"
+
 label show_day:
     if role == "lead":
         jump show_day_lead
@@ -19,21 +30,25 @@ label show_day:
 label start:
     scene room
     "Your room. Audition day is tomorrow." 
+    "Do you check your audition notes?"
     menu:
-        "Do you check your audition notes?":
-            "Yes": 
+    
+            "Yes":
+                scene notes 
                 $ read_notes = True
                 "You read the words carefully"
             "No":
                 "You decide to wing it."
-
+    scene room
+    "Do you review your monologue?"
     menu:
-        "Do you review your monologue?":
             "Yes": 
+                scene mon
                 $ read_monologue = True
                 "You read and reahearse your monologue."
             "No":
                 "You think you got it memorized just fine."
+    scene room
     "You fall asleep..."
     jump morning
 
@@ -42,8 +57,8 @@ label start:
 label morning:
     scene black
     "Your alarm rings."
+    "What do you do?"
     menu:
-        "What do you do?":
             "Get up":
                 "You drag yourself out of bed and get ready for the audition."
                 jump audition 
@@ -64,8 +79,8 @@ label lose_alarm:
 
 
 label audition:
-    scene stage
-    "You step onto the stage."
+    scene audition
+    "You step onto the floor."
 
     if read_monologue:
         "The lines come naturally."
@@ -82,8 +97,8 @@ label good_monologue:
     "The room is silent when you finish."
     jump after_audition
 label after_audition:
+    "Do you leave immediately?"
     menu:
-        "Do you leave immediately?":
             "Yes":
                 "You walk out, unsure how it went."
                 jump results
@@ -96,8 +111,9 @@ label after_audition:
                     "You feel like you're forgetting something."
                     jump results
 label give_resume:
+    "Give your resume to the staff?"
     menu:
-        "Give your resume to the staff?":
+       
             "Yes":
                 $ gave_resume = True
                 "You hand over your resume confidently."
@@ -117,8 +133,8 @@ label results:
         $ role = "lead"
         jump rehearsal_loop
     else:
+        "You didn't stand out too much..."
     menu:
-        "You didn't stand out too much...":
             "Accept background role":
                 $ role = "background"
             "Join stage crew instead":
@@ -139,11 +155,13 @@ label rehearsal_loop:
     jump rehearsal_loop
 label lead_rehearsal_day:
     if day == 1:
+        scene stage
         "You step into rehearsal. The director eyes you carefully."
         "She hands you the script."
         "You are asked to do a cold read."
+        "How do you respond?"
         menu:
-            "How do you respond?":
+            
                 "Give it everything":
                     "You throw yourself into the role, despite the fact that it's just a cold read."
                     $ skill += 2
@@ -158,8 +176,8 @@ label lead_rehearsal_day:
         "You are enjoying yourself..."
         "But starting to feel the pressure."
         "You mess up a line mid scene."
+        "What do you do?"
         menu:
-            "What do you do?":
                 "Keep going":
                     "You recover quickly, and continue the scene."
                     $ skill += 2
@@ -174,9 +192,9 @@ label lead_rehearsal_day:
         "The director starts pushing you harder."
         "They tell you that you aren't doing enough."
         "You feel like you just started memorising the script, and now they expect you to know it by heart?"
-
+        "How do you react?"
         menu:
-            "How do you react?":
+            
                 "Push yourself harder":
                     $ skill += 2
                     $ stress += 2
@@ -193,9 +211,10 @@ label lead_rehearsal_day:
     elif day == 4:
         "You're doing well, but the exhaustion is overwhelming."
         "The fact that everyone can tell stresses you out even more."
+        "How do you handle it?"
 
         menu:
-            "How do you handle it?":
+            
                 "Keep committing. It's stressful, but worth it.":
                     $ stress += 1
                     $ skill += 1
@@ -211,9 +230,8 @@ label lead_rehearsal_day:
     elif day == 5:
         "Dress rehearsal."
         "Everything has to be perfect."
-
+        "What's your approach?"
         menu:
-            "What's your approach?":
                 "Give everything you have":
                     $ skill += 3
                     $ stress += 2
@@ -223,13 +241,11 @@ label lead_rehearsal_day:
                     $ skill += 1
 
     return
-
-
 label background_rehearsal_day:
     if day == 1:
         "You're barely noticed."
+        "What do you do?"
         menu:
-            "What do you do?":
                 "Observe and learn":
                     $ skill += 2
                 "Try to stand out":
@@ -238,8 +254,9 @@ label background_rehearsal_day:
     elif day == 2:
         "You finally get direction."
         "It feels good to be able to do something."
+        "Your response?"
         menu:
-            "Your response?":
+          
                 "Take it seriously":
                     $ skill += 2
                 "Half-listen":
@@ -247,8 +264,8 @@ label background_rehearsal_day:
     elif day == 3:
         "You feel ignored again."
         "You have to spend an hour at rehearsal just sitting backstage."
+        "How do you cope?"
         menu:
-            "How do you cope?":
                 "Stay focused":
                     $ skill += 1
                 "Get discouraged":
@@ -256,9 +273,10 @@ label background_rehearsal_day:
     elif day == 4:
         "Some of the other actors are being kind to you."
         "They hype you up even when you get a small spot on stage!"
+        "What do you do when you get to be in a small scene?"
 
         menu:
-            "What do you do when you get to be in a small scene?":
+          
                 "Make it count":
                     $ reputation += 3
                 "Play it safe":
@@ -266,8 +284,8 @@ label background_rehearsal_day:
     elif day == 5:
         "Final day, it's dress rehearsal."
         "You can't believe how quickly time flew by, but here you are."
+        "What's your mindset?"
         menu:
-            "What's your mindset?":
                 "I belong here":
                     $ passion += 2
                 "I don't matter here":
@@ -276,16 +294,18 @@ label background_rehearsal_day:
 label crew_rehearsal_day:
     if day == 1:
         "You're learning how everything works backstage."
+        "What do you focus on?"
         menu:
-            "What do you focus on?":
+
                 "Learning how things work":
                     $ skill += 2
                 "Helping people out even if you don't really know how":
                     $ reputation += 2
     elif day == 2:
         "Something goes wrong."
+        "What is your reaction?"
         menu:
-            "What is your reaction?":
+           
                 "Fix it quickly":
                     $ skill += 2
                     $ stress += 1
@@ -293,24 +313,25 @@ label crew_rehearsal_day:
                     $ reputation += 1
     elif day == 3:
         "You feel disconnected from the stage."
+        "What do you do?"
         menu:
-            "What do you do?":
                 "Watch rehearsals":
                     $ passion += 2
                 "Stay busy":
                     $ skill += 1
     elif day == 4:
         "You are trusted with being the head of stage crew."
+        "How do you handle it?"
         menu:
-            "How do you handle it?":
+
                 "Take it seriously":
                     $ reputation += 2
                 "Don't put too much of an effort into it":
                     $ stress += 1
     elif day == 5:
         "Final tech rehearsal before the real deal."
+        "What's your mindset?"
         menu:
-            "What's your mindset?":
                 "This matters":
                     $ passion += 2
                 "I'm just background":
@@ -321,8 +342,8 @@ label show_day_lead:
     "It's opening night."
     "You wake up before the alarm."
     "You are  already feeling nervous."
+    "How do you start the day?"
     menu:
-        "How do you start the day?":
             "Practice immediately":
                 $ skill += 1
                 $ stress += 1
@@ -336,8 +357,9 @@ label show_day_lead:
     scene dressing_room
     "The room feels loud, overwhelming."
     "You try to joke and laugh with your fellow actors, but it doesn't seem to break the tension."
+    "What do you do?"
     menu:
-        "What do you do?":
+        
             "Chat with the others in the room":
                 $ reputation += 2
             "Focus quietly":
@@ -349,8 +371,9 @@ label show_day_lead:
     "The curtian rises."
     "Thousands of eyes stare at you."
     "Your first line approaches."
+    "How do you deliver it?"
     menu:
-        "How do you deliver it?":
+       
             "With confidence":
                 $ skill += 2
             "Carefully":
@@ -359,8 +382,9 @@ label show_day_lead:
                 $ reputation -= 1
 
     "The emotional climax of the play arrives."
+    "What drives your performance?"
     menu:
-        "What drives your performance?":
+        
             "Passion":
                 $ passion += 2
             "Perfection":
@@ -381,8 +405,9 @@ label show_day_background:
     "Your name isn't on the posters."
     "Most people probably won't even remember your role."
     "But at least you're in it."
+    "How do you feel?"
     menu:
-        "How do you feel?":
+       
             "Proud to be here":
                 $ passion += 2
             "Nervous":
@@ -393,8 +418,9 @@ label show_day_background:
     "The lobby is packed."
     "People talk excitedly about the lead actor."
     "No one notices you walk in."
+    "What do you do?"
     menu:
-        "What do you do?":
+       
             "Keep your head down":
                 $ stress -= 1
             "Talk to other ensemble members":
@@ -404,8 +430,8 @@ label show_day_background:
     scene dressing_room
     "The dressing room is pure chaos."
     "You overhear someone say the lead is amazing."
+    "What's your reaction?"
     menu:
-        "What's your reaction?":
             "Use it as motivation":
                 $ skill += 2
             "Feel jealous":
@@ -415,8 +441,9 @@ label show_day_background:
                 $ skill += 1
     "It's time for you to go on stage."
     "Everyone applauded the lead, but will they applaud you?"
+    "What keeps you going?"
     menu:
-        "What keeps you going?":
+       
             "Your love for performing": 
                 $ passion += 2
             "Hope someone notices":
@@ -426,8 +453,8 @@ label show_day_background:
     "The scene changes."
     "For the first time, the spotlight briefly shines in your eyes, and it feels good."
     "You have one line in the spotlight."
+    "How do you deliver it?"
     menu:
-        "How do you deliver it?":
             "Confidently":
                 $ skill += 2
             "Carefully":
@@ -448,8 +475,9 @@ label show_day_crew:
     scene room
     "It's opening night."
     "You have to make sure the show runs smoothly."
+    "How do you start the day?"
     menu:
-        "How do you start the day?":
+        
             "Review the cue sheet":
                 $ skill += 2
             "Try to stay calm":
@@ -457,11 +485,12 @@ label show_day_crew:
             "Avoid thinking about mistakes":
                 $ passion -= 1
     scene lobby
-    "The theatre is already moving."
+    "The theatre is already alive."
     "Props are being moved, lights are being tested, and there are tons of things to do."
     "The stage manager tells you to help out."
+    "How do you respond?"
     menu:
-        "How do you respond?":
+        
             "Check lighting":
                 $ skill += 2
             "Help the cast":
@@ -471,8 +500,9 @@ label show_day_crew:
                 $ skill += 1
     scene tech_booth
     "An important prop goes missing. The stage manager looks concerned."
+    "What do you do?"
     menu: 
-        "What do you do?":
+        
             "Search for it yourself":
                 $ skill += 2
                 $ stress += 1
@@ -485,8 +515,9 @@ label show_day_crew:
     "Your headset crackles."
     "You try to do everything right on time, but there's a lot to be done."
     "Cue after cue rolls by, and you try your best to focus."
+    "How do you handle the pressure?"
     menu:
-        "How do you handle the pressure?":
+        
             "Stay focused":
                 $ skill += 2
             "Trust your instincts":
@@ -495,8 +526,9 @@ label show_day_crew:
                 $ stress += 2
     "Suddenly, an important spotlight goes out."
     "The stage manager is nowhere around."
+    "What do you do?"
     menu:
-        "What do you do?":
+        
             "Dig through wires, and try to see which one could've disconnected.":
                 $ skill += 3
             "Choose to not trust yourself with this, and call for help.":
@@ -541,31 +573,38 @@ label final_outcome:
 
 
 label success_ending:
-    "You made it. All of the rehearsals, all of the stress finally led somewhere. This is an actor's dream. You finally got your big break, and you will want to keep doing thsi for as long as you can."
+    scene win
+    centered   "You made it. All of the rehearsals, all of the stress finally led somewhere. This is an actor's dream. You finally got your big break, and you will want to keep doing thsi for as long as you can."
     return
 
 
 label burnout_ending:
-    "The show is over. But you feel empty. You need to step away from thsi path for now. The pressure took more from you tahn expected."
+    scene door
+    centered"The show is over. But you feel empty. You need to step away from this path for now. The pressure took more from you than expected."
     return
 
 label quit_theatre:
-    "You stand on the empty stage after everyone has left. Somewhere along the way, theatre stopped feeling right. Maybe it's time for something new. You leave the theatre and sigh."
+    scene door
+    centered"You stand on the empty stage after everyone has left. Somewhere along the way, theatre stopped feeling right. Maybe it's time for something new. You leave the theatre and sigh."
     return
 
 label found_passion:
-    "You smile quietly. Maybe you were never chasing the spotlight, and you were just finding a place to belong. Now you have, and it's your passion."
+    scene win
+    centered "You smile quietly. Maybe you were never chasing the spotlight, and you were just finding a place to belong. Now you have, and it's your passion."
     return
 
 label manager:
-    "The stage manager offers you to be co-manager. You pause. This idea feels right. Maybe this is what you are meant to be. You accept."
+    scene win
+    centered"The stage manager offers you to be co-manager. You pause. This idea feels right. Maybe this is what you are meant to be. You accept."
     return
 
 
 label directors_fav:
-    "You weren't perfect. But you've got a good reputation. Sometimes reliability matters more than brilliance. You are the director's favorite."
+    scene win
+    centered"You weren't perfect. But you've got a good reputation. Sometimes reliability matters more than brilliance. You are the director's favorite."
     return
 
 label scene_stealer:
-    "It was only a small role, but people noticed. You realize small roles might matter more than you thought. Someone hands you a bouquet after you are done."
+    scene win
+    centered "It was only a small role, but people noticed. You realize small roles might matter more than you thought. Someone hands you a bouquet after you are done."
     return
