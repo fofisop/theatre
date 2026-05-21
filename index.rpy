@@ -9,6 +9,7 @@ default passion = 0
 default role = "none"
 default max_days = 5
 default day = 1
+
 image room = "room.png"
 image audition = "audition.png"
 image lobby = "lobby.png"
@@ -19,6 +20,7 @@ image tech_booth = "tech_booth.png"
 image stage = "stage.png" 
 image womp = "womp.png"
 image win = "win.png"
+image door = "door.png"
 
 label show_day:
     if role == "lead":
@@ -28,7 +30,16 @@ label show_day:
     else:
         jump show_day_crew
 label start:
-    scene room
+    $ read_notes = False
+$ read_monologue = False
+$ gave_resume = False
+$ stress = 0
+$ skill = 0
+$ reputation = 0
+$ passion = 0
+$ role = "none"
+$ day = 1
+scene room
     "Your room. Audition day is tomorrow." 
     "Do you check your audition notes?"
     menu:
@@ -143,7 +154,7 @@ label results:
 label rehearsal_loop:
     if day > max_days:
         jump show_day
-    scene rehearsal
+    scene stage
     "Day [day] of rehearsals."
     if role == "lead":
         call lead_rehearsal_day
@@ -351,7 +362,7 @@ label show_day_lead:
                 $ stress -= 1
             "Avoid thinking about the show":
                 $ passion -= 1
-    scene theatre_lobby
+    scene lobby
     "People keep wishing you luck."
     "They don't calm your nerves."
     scene dressing_room
@@ -391,7 +402,7 @@ label show_day_lead:
                 $ stress += 2
             "Fear":
                 $ stress += 3
-    scene back_after
+    scene lobby
     "The show is over."
     "The applause still echoes in your head."
     "People laugh, cry, hug."
@@ -440,6 +451,7 @@ label show_day_background:
                 $ stress -= 1 
                 $ skill += 1
     "It's time for you to go on stage."
+    scene stage
     "Everyone applauded the lead, but will they applaud you?"
     "What keeps you going?"
     menu:
@@ -544,67 +556,77 @@ label show_day_crew:
     jump final_outcome
 label final_outcome:
 
-    if stress >= 10 and passion < 4:
+    if stress >= 12 and passion <= 3:
         jump burnout_ending
 
     if role == "lead":
-        if skill >= 8 and passion >= 4:
+        if skill >= 9 and passion >= 6 and reputation >= 5 and stress <= 7:
             jump success_ending
-        elif reputation >= 8:
+        elif reputation >= 8 and skill >= 6:
             jump directors_fav
         else:
             jump quit_theatre
 
     elif role == "background":
-        if passion >= 6:
+        if passion >= 7 and stress <= 8:
             jump found_passion
-        elif skill >= 7 and reputation >= 6:
+        elif skill >= 7 and reputation >= 6 and passion >= 4:
             jump scene_stealer
         else:
             jump quit_theatre
 
     elif role == "crew":
-        if skill >= 8 and reputation >= 6 and stress <= 5:
+        if skill >= 8 and reputation >= 6 and stress <= 6:
             jump manager
-        elif skill >= 7 and reputation >= 5:
+        elif passion >= 6 and reputation >= 4:
             jump found_passion
+        elif stress >= 10:
+            jump burnout_ending
+
         else:
             jump quit_theatre
 
 
 label success_ending:
     scene win
-    centered   "You made it. All of the rehearsals, all of the stress finally led somewhere. This is an actor's dream. You finally got your big break, and you will want to keep doing thsi for as long as you can."
+    centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
+    centered "You made it. All of the rehearsals, all of the stress finally led somewhere. This is an actor's dream. You finally got your big break, and you will want to keep doing thsi for as long as you can."
     return
 
 
 label burnout_ending:
     scene door
-    centered"The show is over. But you feel empty. You need to step away from this path for now. The pressure took more from you than expected."
+    centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
+    centered "The show is over. But you feel empty. You need to step away from this path for now. The pressure took more from you than expected."
     return
 
 label quit_theatre:
     scene door
-    centered"You stand on the empty stage after everyone has left. Somewhere along the way, theatre stopped feeling right. Maybe it's time for something new. You leave the theatre and sigh."
+    centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
+    centered "You stand on the empty stage after everyone has left. Somewhere along the way, theatre stopped feeling right. Maybe it's time for something new. You leave the theatre and sigh."
     return
 
 label found_passion:
     scene win
+    centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
     centered "You smile quietly. Maybe you were never chasing the spotlight, and you were just finding a place to belong. Now you have, and it's your passion."
     return
 
 label manager:
     scene win
-    centered"The stage manager offers you to be co-manager. You pause. This idea feels right. Maybe this is what you are meant to be. You accept."
+    centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
+    centered "The stage manager offers you to be co-manager. You pause. This idea feels right. Maybe this is what you are meant to be. You accept."
     return
 
 
 label directors_fav:
     scene win
-    centered"You weren't perfect. But you've got a good reputation. Sometimes reliability matters more than brilliance. You are the director's favorite."
+    centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
+    centered "You weren't perfect. But you've got a good reputation. Sometimes reliability matters more than brilliance. You are the director's favorite."
     return
 
 label scene_stealer:
     scene win
+    centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
     centered "It was only a small role, but people noticed. You realize small roles might matter more than you thought. Someone hands you a bouquet after you are done."
     return

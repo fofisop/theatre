@@ -2,9 +2,17 @@
 errors listed below, and try again.
 
 
-File "screens.rpy", line 11: Line is indented, but the preceding yalign statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    textbutton "Start" action Start()
+File "index.rpy", line 42: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    scene room
     ^
 
+File "index.rpy", line 581: expected statement.
+    elif passion >= 6 and reputation >= 4:
+                 ^
+
+File "screens.rpy", line 39: 'scene' is not a keyword argument or valid child of the frame statement.
+    scene stage
+         ^
+
 Ren'Py Version: Ren'Py 8.5.2.26010301
-Tue May 19 09:18:59 2026
+Thu May 21 13:14:49 2026
