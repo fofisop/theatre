@@ -1,2 +1,2 @@
 My first visual/novel game thing! I am a huge fan of theatre, and I have loved being on the stage for a long time. I stumbled upon renpy through looking at others hack club projects, and I decided on creating a visual novel based on my own experiences to that everyone can have a peep at the theatre world. Credit to the original creators of the referenced posters.
-I struggled with bugs for like three hours straight, but finally some peopel in hc were able to help out!
+I struggled with bugs for like three hours straight, but finally some peopel in hc were able to help out! my mom also helped me in the end lol :D

@@ -560,10 +560,16 @@ label final_outcome:
         jump burnout_ending
 
     if role == "lead":
-        if skill >= 9 and passion >= 6 and reputation >= 5 and stress <= 7:
+
+        if skill >= 7 and passion >= 6:
             jump success_ending
-        elif reputation >= 8 and skill >= 6:
+
+        elif reputation >= 6:
             jump directors_fav
+
+        elif skill >= 5:
+            jump steady_ending
+
         else:
             jump quit_theatre
 
@@ -572,6 +578,8 @@ label final_outcome:
             jump found_passion
         elif skill >= 7 and reputation >= 6 and passion >= 4:
             jump scene_stealer
+        elif skill >= 4:
+            jump hidden_talent_ending
         else:
             jump quit_theatre
 
@@ -629,4 +637,18 @@ label scene_stealer:
     scene win
     centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
     centered "It was only a small role, but people noticed. You realize small roles might matter more than you thought. Someone hands you a bouquet after you are done."
+    return
+
+
+label steady_ending:
+    scene win
+    centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
+    centered "You didn't steal the spotlight — but you never missed a beat. Reliability becomes your strength."
+    return
+
+
+label hidden_talent_ending:
+    scene win    
+    centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
+    centered "Someone noticedd you when no one else did. It might not be your moment yet… but it could be."
     return
