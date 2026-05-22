@@ -19,6 +19,7 @@ image dressing_room = "dressing_room.png"
 image tech_booth = "tech_booth.png"
 image stage = "stage.png" 
 image womp = "womp.png"
+image b = Solid("#000000")
 image win = "win.png"
 image door = "door.png"
 
@@ -31,42 +32,53 @@ label show_day:
         jump show_day_crew
 label start:
     $ read_notes = False
-$ read_monologue = False
-$ gave_resume = False
-$ stress = 0
-$ skill = 0
-$ reputation = 0
-$ passion = 0
-$ role = "none"
-$ day = 1
-scene room
+    $ read_monologue = False
+    $ gave_resume = False
+    $ stress = 0
+    $ skill = 0
+    $ reputation = 0
+    $ passion = 0
+    $ role = "none"
+    $ day = 1
+    scene b
+    show room:
+        xalign 0.5
+        yalign 0.3
     "Your room. Audition day is tomorrow." 
     "Do you check your audition notes?"
     menu:
     
             "Yes":
-                scene notes 
+                scene b
+                show notes 
                 $ read_notes = True
                 "You read the words carefully"
             "No":
                 "You decide to wing it."
-    scene room
+    scene b
+    show room:
+        xalign 0.5
+        yalign 0.3
     "Do you review your monologue?"
     menu:
             "Yes": 
-                scene mon
+                scene b
+                show mon
                 $ read_monologue = True
-                "You read and reahearse your monologue."
+                "You read and rehearse your monologue."
             "No":
                 "You think you got it memorized just fine."
-    scene room
+    scene b
+    show room:
+        xalign 0.5
+        yalign 0.3
     "You fall asleep..."
     jump morning
 
 
 
 label morning:
-    scene black
+    scene b
     "Your alarm rings."
     "What do you do?"
     menu:
@@ -79,7 +91,7 @@ label morning:
 
 label lose_alarm:
 
-    scene black
+    scene b
 
     "You fall back asleep."
 
@@ -90,7 +102,10 @@ label lose_alarm:
 
 
 label audition:
-    scene audition
+    scene b
+    show audition:
+        xalign 0.5
+        yalign 0.3
     "You step onto the floor."
 
     if read_monologue:
@@ -134,12 +149,15 @@ label give_resume:
 
 
 label results:
-    scene room
+    scene b
+    show room:
+        xalign 0.5
+        yalign 0.3
 
     "Later that night..."
     "You check your phone."
 
-    if gave_resume:
+    if gave_resume and read_monologue:
         "You got the lead role!!!"
         $ role = "lead"
         jump rehearsal_loop
@@ -154,7 +172,10 @@ label results:
 label rehearsal_loop:
     if day > max_days:
         jump show_day
-    scene stage
+    scene b
+    show stage:
+        xalign 0.5
+        yalign 0.3
     "Day [day] of rehearsals."
     if role == "lead":
         call lead_rehearsal_day
@@ -166,7 +187,10 @@ label rehearsal_loop:
     jump rehearsal_loop
 label lead_rehearsal_day:
     if day == 1:
-        scene stage
+        scene b
+        show stage:
+            xalign 0.5
+            yalign 0.3
         "You step into rehearsal. The director eyes you carefully."
         "She hands you the script."
         "You are asked to do a cold read."
@@ -349,7 +373,10 @@ label crew_rehearsal_day:
                     $ passion -= 2
     return
 label show_day_lead:
-    scene room
+    scene b
+    show room:
+        xalign 0.5
+        yalign 0.3
     "It's opening night."
     "You wake up before the alarm."
     "You are  already feeling nervous."
@@ -362,10 +389,16 @@ label show_day_lead:
                 $ stress -= 1
             "Avoid thinking about the show":
                 $ passion -= 1
-    scene lobby
+    scene b
+    show lobby:
+        xalign 0.5
+        yalign 0.3
     "People keep wishing you luck."
     "They don't calm your nerves."
-    scene dressing_room
+    scene b
+    show dressing_room:
+        xalign 0.5
+        yalign 0.3
     "The room feels loud, overwhelming."
     "You try to joke and laugh with your fellow actors, but it doesn't seem to break the tension."
     "What do you do?"
@@ -377,8 +410,10 @@ label show_day_lead:
                 $ skill += 1
             "Panic internally":
                 $ stress += 2
-                                        
-    scene stage
+    scene b                                   
+    show stage:
+        xalign 0.5
+        yalign 0.3
     "The curtian rises."
     "Thousands of eyes stare at you."
     "Your first line approaches."
@@ -402,7 +437,10 @@ label show_day_lead:
                 $ stress += 2
             "Fear":
                 $ stress += 3
-    scene lobby
+    scene b
+    show lobby:
+        xalign 0.5
+        yalign 0.3
     "The show is over."
     "The applause still echoes in your head."
     "People laugh, cry, hug."
@@ -411,7 +449,10 @@ label show_day_lead:
       
                                            
 label show_day_background:
-    scene room
+    scene b
+    show room:
+        xalign 0.5
+        yalign 0.3
     "Opening night."
     "Your name isn't on the posters."
     "Most people probably won't even remember your role."
@@ -425,7 +466,10 @@ label show_day_background:
                 $ stress += 2
             "Useless":
                 $ passion -= 1
-    scene lobby
+    scene b
+    show lobby:
+        xalign 0.5
+        yalign 0.3
     "The lobby is packed."
     "People talk excitedly about the lead actor."
     "No one notices you walk in."
@@ -438,7 +482,10 @@ label show_day_background:
                 $ reputation += 2
             "Watch the lead longingly from afar":
                 $ passion -= 1
-    scene dressing_room
+    scene b            
+    show dressing_room:
+        xalign 0.5
+        yalign 0.3
     "The dressing room is pure chaos."
     "You overhear someone say the lead is amazing."
     "What's your reaction?"
@@ -451,7 +498,10 @@ label show_day_background:
                 $ stress -= 1 
                 $ skill += 1
     "It's time for you to go on stage."
-    scene stage
+    scene b
+    show stage:
+        xalign 0.5
+        yalign 0.3
     "Everyone applauded the lead, but will they applaud you?"
     "What keeps you going?"
     menu:
@@ -473,7 +523,10 @@ label show_day_background:
                 $ stress -= 1
             "Quietly":
                 $ reputation -= 1
-    scene lobby
+    scene b
+    show lobby:
+        xalign 0.5
+        yalign 0.3
     "The performance ends."
     "The lead gets surrounded by applause and flowers."
     "You stand off to the side."
@@ -484,7 +537,10 @@ label show_day_background:
 
 
 label show_day_crew:
-    scene room
+    scene b
+    show room:
+        xalign 0.5
+        yalign 0.3
     "It's opening night."
     "You have to make sure the show runs smoothly."
     "How do you start the day?"
@@ -496,7 +552,10 @@ label show_day_crew:
                 $ stress -= 1
             "Avoid thinking about mistakes":
                 $ passion -= 1
-    scene lobby
+    scene b
+    show lobby:
+        xalign 0.5
+        yalign 0.3
     "The theatre is already alive."
     "Props are being moved, lights are being tested, and there are tons of things to do."
     "The stage manager tells you to help out."
@@ -510,7 +569,10 @@ label show_day_crew:
             "Double check everything":
                 $ stress += 1
                 $ skill += 1
-    scene tech_booth
+    scene b
+    show tech_booth:
+        xalign 0.5
+        yalign 0.3
     "An important prop goes missing. The stage manager looks concerned."
     "What do you do?"
     menu: 
@@ -596,59 +658,86 @@ label final_outcome:
 
 
 label success_ending:
-    scene win
+    scene b
+    show win:
+        xalign 0.5
+        yalign 0.3
     centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
     centered "You made it. All of the rehearsals, all of the stress finally led somewhere. This is an actor's dream. You finally got your big break, and you will want to keep doing thsi for as long as you can."
     return
 
 
 label burnout_ending:
-    scene door
+    scene b
+    show door:
+        xalign 0.5
+        yalign 0.3
     centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
     centered "The show is over. But you feel empty. You need to step away from this path for now. The pressure took more from you than expected."
     return
 
 label quit_theatre:
-    scene door
+    scene b
+    show door:
+        xalign 0.5
+        yalign 0.3
     centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
     centered "You stand on the empty stage after everyone has left. Somewhere along the way, theatre stopped feeling right. Maybe it's time for something new. You leave the theatre and sigh."
     return
 
 label found_passion:
-    scene win
+    scene b
+    show win:
+        xalign 0.5
+        yalign 0.3
     centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
     centered "You smile quietly. Maybe you were never chasing the spotlight, and you were just finding a place to belong. Now you have, and it's your passion."
     return
 
 label manager:
-    scene win
+    scene b
+    show win:
+        xalign 0.5
+        yalign 0.3
     centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
     centered "The stage manager offers you to be co-manager. You pause. This idea feels right. Maybe this is what you are meant to be. You accept."
     return
 
 
 label directors_fav:
-    scene win
+    scene b
+    show win:
+        xalign 0.5
+        yalign 0.3
     centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
     centered "You weren't perfect. But you've got a good reputation. Sometimes reliability matters more than brilliance. You are the director's favorite."
     return
 
 label scene_stealer:
-    scene win
+    scene b
+    show win:
+        xalign 0.5
+        yalign 0.3
     centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
     centered "It was only a small role, but people noticed. You realize small roles might matter more than you thought. Someone hands you a bouquet after you are done."
     return
 
 
 label steady_ending:
-    scene win
+    scene b
+    show win:
+        xalign 0.5
+        yalign 0.3
     centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
     centered "You didn't steal the spotlight — but you never missed a beat. Reliability becomes your strength."
     return
 
 
 label hidden_talent_ending:
-    scene win    
+    scene b
+    show win:
+        xalign 0.5
+        yalign 0.3
     centered "Skill: [skill]\nReputation: [reputation]\nPassion: [passion]\nStress: [stress]"
-    centered "Someone noticedd you when no one else did. It might not be your moment yet… but it could be."
+    centered "Someone noticed you when no one else did. It might not be your moment yet… but it could be."
     return

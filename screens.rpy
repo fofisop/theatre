@@ -18,17 +18,17 @@ style choice_button_text:
 
 screen choice(items):
 
-
     style_prefix "choice"
+
     window:
         background "#00000088"
         xalign 0.5
         yalign 0.5
         padding (30, 20)
 
-        has vbox
-        spacing 20
+        vbox:
+            spacing 20
 
-        for i in items:
-            textbutton i.caption action i.action
+            for i in items:
+                textbutton i.caption action i.action
    

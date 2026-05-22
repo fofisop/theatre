@@ -10,3 +10,6 @@ define gui.name_text_size = 36
 define gui.choice_button_width = 500
 define gui.choice_button_height = 70
 define gui.choice_button_text_size = 30
+
+
+define gui.accent_color = "#000000"
